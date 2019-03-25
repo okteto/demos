@@ -1,0 +1,6 @@
+name: vote-desk
+image: okteto/desk:0.1.2
+workdir: /okteto
+forward:
+  - 5500:5000
+  - 5501:5001

@@ -1,0 +1,5 @@
+version: "3.4"
+services:
+  builder:
+    image: pchico83/go-cnd:0.2
+    build: .

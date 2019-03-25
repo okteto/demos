@@ -1,0 +1,8 @@
+version: "3"
+services:
+  cpu:
+    image: python
+    working_dir: /app
+    volumes:
+     - .:/app
+    command: python app.py

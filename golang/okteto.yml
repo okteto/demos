@@ -1,0 +1,8 @@
+swap:
+  deployment:
+    name: mult
+mount:
+  target: /app
+scripts:
+  start: go run main.go
+  test: go test ./...
