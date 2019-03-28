@@ -12,7 +12,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 0
       containers:
-      - image: python:3
+      - image: okteto/collaborative-voting-app-vote
         name: vote
         env:
           - name: CLIENT_ID
