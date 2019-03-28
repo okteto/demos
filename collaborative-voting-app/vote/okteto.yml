@@ -1,11 +1,10 @@
 swap:
   deployment:
     name: vote
-    image: image: okteto/collaborative-voting-app-vote
-    command: ["bash"]
+    image: okteto/collaborative-voting-app-vote
+    command: ["tail", "-f", "/dev/null"]
 mount:
   target: /usr/src/app
-  size: 10Gi
 scripts:
   hello: echo Your cluster ♥s you
   install: pip install -r requirements.txt

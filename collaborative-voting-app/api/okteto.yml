@@ -2,7 +2,7 @@ swap:
   deployment:
     name: api
     image: okteto/collaborative-voting-app-api
-    command: ["bash"]
+    command: ["tail", "-f", "/dev/null"]
 mount:
   target: /usr/src/app
 scripts:
