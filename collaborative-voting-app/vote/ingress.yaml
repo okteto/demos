@@ -7,7 +7,8 @@ metadata:
   name: vote-ingress
 spec:
   rules:
-  - http:
+  - host: ramiro-dev.usa.okteto.net
+    http:
       paths:
       - path: /
         backend:
