@@ -2,6 +2,7 @@ swap:
   deployment:
     name: vote
     image: python:3
+    command: ["bash"]
 mount:
   target: /usr/src/app
   size: 10Gi
