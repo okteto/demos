@@ -25,11 +25,10 @@ def get_token():
 
 
 @app.route("/", methods=['POST','GET'])
-def hello():
+def vote():
     token = get_token()
-    print(token)
     headers = {"authorization": "Bearer {}".format(token["access_token"])}
-    vote = None 
+    vote = None
     if request.method == 'POST':
         if request.form['vote'] == 'a':
             vote = option_a
@@ -38,9 +37,10 @@ def hello():
             
         _r = requests.post("http://api:8080", json={"vote": vote}, headers=headers)
         _r.raise_for_status()
+    else:
+        _r = requests.get("http://api:8080", headers=headers)
+        _r.raise_for_status()
     
-    _r = requests.get("http://api:8080", headers=headers)
-    _r.raise_for_status()
     votes = _r.json()
     resp = make_response(render_template(
         'index.html',
