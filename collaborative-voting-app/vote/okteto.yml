@@ -4,9 +4,10 @@ swap:
     image: python:3
 mount:
   target: /usr/src/app
+  size: 10Gi
 scripts:
   hello: echo Your cluster ♥s you
   install: pip install -r requirements.txt
   start: python app.py
 forward:
-- 8080:8080
+- 8090:8080

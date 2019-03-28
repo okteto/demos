@@ -7,7 +7,8 @@ app = Flask(__name__)
 
 @app.route("/", methods=['POST'])
 def post():
-    vote = request.json["vote"]
+    content = request.get_json()
+    vote = content["vote"]
     votes[vote] = votes[vote] + 1
     return ('', 204)
 
