@@ -1,7 +1,7 @@
 swap:
   deployment:
     name: vote
-    image: okteto/collaborative-voting-app-vote
+    image: python:3
     command: ["bash"]
 mount:
   target: /usr/src/app
