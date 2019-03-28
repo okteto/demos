@@ -119,7 +119,7 @@ def post():
     content = request.get_json()
     vote = content["vote"]
     votes[vote] = votes[vote] + 1
-    return ('', 204)
+    return jsonify(votes)
 
 @app.route("/", methods=['GET'])
 @cross_origin(headers=['Content-Type', 'Authorization'])
