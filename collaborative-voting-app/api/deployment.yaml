@@ -12,9 +12,5 @@ spec:
     spec:
       terminationGracePeriodSeconds: 0
       containers:
-      - image: python:3
+      - image: okteto/collaborative-voting-app-api
         name: api
-        command: 
-        - tail
-        - -f
-        - /dev/null
