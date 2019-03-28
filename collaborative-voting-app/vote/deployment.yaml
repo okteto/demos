@@ -25,7 +25,3 @@ spec:
               secretKeyRef:
                 name: auth0
                 key: client_secret
-        command: 
-        - tail
-        - -f
-        - /dev/null
