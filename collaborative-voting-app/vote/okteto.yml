@@ -1,0 +1,12 @@
+swap:
+  deployment:
+    name: vote
+    image: python:3
+mount:
+  target: /usr/src/app
+scripts:
+  hello: echo Your cluster ♥s you
+  install: pip install -r requirements.txt
+  start: python app.py
+forward:
+- 8080:8080
