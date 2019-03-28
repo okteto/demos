@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+  name: vote-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: vote
+          servicePort: 8080
+  tls:
+  - hosts:
+    - ramiro-dev.usa.okteto.net
+    secretName: website-letsencrypt
