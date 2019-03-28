@@ -5,27 +5,41 @@ import os
 import socket
 import random
 import json
+import http.client
 
-option_a = os.getenv('OPTION_A', 'Otters')
+option_a = os.getenv('OPTION_A', 'Cats')
 option_b = os.getenv('OPTION_B', 'Dogs')
 hostname = socket.gethostname()
 namespace = os.getenv('CND_KUBERNETES_NAMESPACE', 'localhost')
 
+client_id = os.getenv('CLIENT_ID', '')
+client_secret = os.getenv('CLIENT_SECRET', '')
+
 app = Flask(__name__)
+
+def get_token():
+    payload = {"client_id":client_id,"client_secret":client_secret,"audience":"https://okteto/vote","grant_type":"client_credentials"}
+    _r = requests.post("https://okteto.auth0.com/oauth/token", json=payload)
+    _r.raise_for_status()
+    return _r.json()
+
 
 @app.route("/", methods=['POST','GET'])
 def hello():
-    vote = None
+    token = get_token()
+    print(token)
+    headers = {"authorization": "Bearer {}".format(token["access_token"])}
+    vote = None 
     if request.method == 'POST':
         if request.form['vote'] == 'a':
             vote = option_a
         else:
             vote = option_b
             
-        _r = requests.post("http://api:8080", json={"vote": vote})
+        _r = requests.post("http://api:8080", json={"vote": vote}, headers=headers)
         _r.raise_for_status()
     
-    _r = requests.get("http://api:8080")
+    _r = requests.get("http://api:8080", headers=headers)
     _r.raise_for_status()
     votes = _r.json()
     resp = make_response(render_template(
